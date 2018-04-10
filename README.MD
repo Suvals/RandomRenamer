@@ -1,1 +1,1 @@
-The program renames the specified files using the specified rules/Программа переименовывает указанные файлы, используя указанные правила
+The program renames the specified files using the specified rules/РџСЂРѕРіСЂР°РјРјР° РїРµСЂРµРёРјРµРЅРѕРІС‹РІР°РµС‚ СѓРєР°Р·Р°РЅРЅС‹Рµ С„Р°Р№Р»С‹, РёСЃРїРѕР»СЊР·СѓСЏ СѓРєР°Р·Р°РЅРЅС‹Рµ РїСЂР°РІРёР»Р°
