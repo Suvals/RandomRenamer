@@ -1,3 +1,5 @@
+package Controller;
+
 import View.MainFrame;
 
 import javax.swing.*;
