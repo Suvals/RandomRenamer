@@ -30,7 +30,7 @@ public class MainFrame extends JFrame {
     static {
 
         Dimension window_size = Toolkit.getDefaultToolkit().getScreenSize();
-        default_width = window_size.width / 10;
+        default_width = window_size.width / 4;
         default_height = window_size.height / 4;
     }
 
@@ -41,7 +41,7 @@ public class MainFrame extends JFrame {
 
 
         JMenu fileMenu = new JMenu("File");
-        JMenuItem fileOpen = new JMenuItem("File open");
+        JMenuItem fileOpen = new JMenuItem("Open Directory");
         fileOpen.addActionListener(new FileOpenListener());
         fileMenu.add(fileOpen);
 
@@ -73,11 +73,17 @@ public class MainFrame extends JFrame {
             if(result == JFileChooser.APPROVE_OPTION){
                 fileName = chooser.getSelectedFile().getAbsolutePath();
                 testingDirectory = chooser.getSelectedFile();
-             //   System.out.println(fileName + " " + testingDirectory);
-                createRandomFiles = new CreateRandomFiles(testingDirectory);
-                createRandomFiles.makeFiles();
-
+                if(testingDirectory.isDirectory()) {
+                    createRandomFiles = new CreateRandomFiles(testingDirectory);
+                    alert(createRandomFiles.makeFiles());
+                } else {
+                    alert("You select isn`t directory. Please, reselect!!!");
+                }
             }
         }
+    }
+
+    private void alert(String message){
+         JOptionPane.showMessageDialog(this, message);
     }
 }

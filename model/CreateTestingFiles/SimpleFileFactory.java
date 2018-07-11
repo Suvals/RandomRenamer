@@ -1,17 +1,23 @@
-package model.CreateTestingFiles;
+package model.createTestingFiles;
 
-import javax.naming.spi.DirStateFactory;
 import java.nio.file.Path;
 
 /**
  * User: Main
  * Date: 10.07.2018
+ *
+ * Main interface of any objects, that can create file/directory using some rules.
+ *
  */
 public interface SimpleFileFactory {
 
- public boolean getState();
 
-  public Path createFile(Path path);
+    /**
+      * @return  {@code true}  if file/directory success created
+     */
+   boolean getState();
 
-  public String getFinalMessage();
+   Path createFile(Path path);
+
+   String getFinalMessage();
 }

@@ -1,9 +1,11 @@
 package model;
 
-import model.CreateTestingFiles.SimpleRandomFileCreator;
-import model.CreateTestingFiles.SimpleFileFactory;
+import model.createTestingFiles.SimpleRandomDirectoryCreator;
+import model.createTestingFiles.SimpleRandomFileCreator;
+import model.createTestingFiles.SimpleFileFactory;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -17,7 +19,7 @@ public class CreateRandomFiles {
     private File directory;
     private Path pathForCreate;
     private SimpleFileFactory fileFactory;
-    private HashSet<Path> pathSet = new HashSet<Path>();
+    private Set<Path> pathList = new HashSet<Path>();
     private List<SimpleFileFactory> fileCreatorsList = new ArrayList<SimpleFileFactory>();
 
     private int amountOfFiles = 50;
@@ -26,49 +28,46 @@ public class CreateRandomFiles {
     public CreateRandomFiles(File directory) {
         this.directory = directory;
         pathForCreate = Paths.get(directory.getAbsolutePath());
-        pathSet.add(pathForCreate);
-        fileCreatorsList.add(new SimpleRandomFileCreator());
+        pathList.add(pathForCreate);
+        // pathList.add(null);
+
     }
 
     public String makeFiles() {
 
-        Path tmpPath = null;
-
-        for(int i = 0; i < amountOfFiles; i++){
-            ArrayList<Path> tempListPaths = new ArrayList<Path>(pathSet);
-             fileFactory = fileCreatorsList.get(getRandomNumber(fileCreatorsList.size()));
-           tmpPath =  fileFactory.createFile(tempListPaths.get(getRandomNumber(tempListPaths.size())));
-            System.out.println(fileFactory.getFinalMessage());
-            pathSet.add(tmpPath.getParent());
+        setListCreators();
+        Path tmpPath;
+        for (int i = 0; i < amountOfFiles; i++) {
+            if(Files.exists(pathForCreate)) {
+                ArrayList<Path> tempListPaths = new ArrayList<Path>(pathList);
+                fileFactory = fileCreatorsList.get(getRandomNumber(fileCreatorsList.size()));
+                tmpPath = fileFactory.createFile(tempListPaths.get(getRandomNumber(tempListPaths.size())));
+                System.out.println(fileFactory.getFinalMessage());
+                System.out.println(tmpPath);
+                if (!(tmpPath == null) & fileFactory.getState()) {
+                    pathList.add(tmpPath);
+                }
+            } else {
+                return "The start Path doesn`t exist no more";
+            }
         }
 
-        System.out.println(pathSet);
-
-
-
-      /*  if(directory.isDirectory()){
-              for(int i = 0; i < 50; i++){
-                  path = Paths.get(directory.getAbsolutePath() + "\\" + i + ".txt");
-                  path1 = Paths.get(directory.getAbsolutePath() + "\\" + i);
-                  try {
-                      if(!Files.exists(path) || !Files.exists(path1)) {
-                         Files.createFile(path);
-                          Files.createDirectory(path1);
-                      }
-                  } catch (IOException e) {
-                      e.printStackTrace();
-                      return e.getMessage();
-                  }
-              }
-            return "Файлы успешно созданы";
+        for(Path p: pathList) {
+            System.out.println(p);
         }
-        return "Вы не выбрали директорию " + directory.getAbsolutePath();  */
-        return null;
+        pathList.clear();
+
+        return "The files/directories created success";
     }
 
 
-    private int getRandomNumber(int i){
-        return  (int) Math.random() * i;
+    private int getRandomNumber(int i) {
+        return (int) (Math.random() * i);
     }
 
+    private void setListCreators() {
+
+        fileCreatorsList.add(new SimpleRandomFileCreator());
+        fileCreatorsList.add(new SimpleRandomDirectoryCreator());
+    }
 }
