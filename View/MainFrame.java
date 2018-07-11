@@ -1,4 +1,6 @@
-package View;
+package view;
+
+import model.CreateRandomFiles;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,12 +22,15 @@ public class MainFrame extends JFrame {
     private static int default_width;
     private static int default_height;
     private String windowName = "Main window";
+    private String fileName;
+    private File testingDirectory;
     private JFileChooser chooser;
+    private CreateRandomFiles createRandomFiles;
 
     static {
 
         Dimension window_size = Toolkit.getDefaultToolkit().getScreenSize();
-        default_width = window_size.width / 4;
+        default_width = window_size.width / 10;
         default_height = window_size.height / 4;
     }
 
@@ -39,12 +44,22 @@ public class MainFrame extends JFrame {
         JMenuItem fileOpen = new JMenuItem("File open");
         fileOpen.addActionListener(new FileOpenListener());
         fileMenu.add(fileOpen);
+
+        JMenuItem exitButton = new JMenuItem("Exit");
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        fileMenu.add(exitButton);
         chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
         JMenuBar bar = new JMenuBar();
         bar.add(fileMenu);
         setJMenuBar(bar);
+
 
     }
 
@@ -56,8 +71,12 @@ public class MainFrame extends JFrame {
             chooser.setCurrentDirectory(new File("."));
             int result = chooser.showOpenDialog(MainFrame.this);
             if(result == JFileChooser.APPROVE_OPTION){
-                String name = chooser.getSelectedFile().getAbsolutePath();
-                System.out.println(name);
+                fileName = chooser.getSelectedFile().getAbsolutePath();
+                testingDirectory = chooser.getSelectedFile();
+             //   System.out.println(fileName + " " + testingDirectory);
+                createRandomFiles = new CreateRandomFiles(testingDirectory);
+                createRandomFiles.makeFiles();
+
             }
         }
     }
