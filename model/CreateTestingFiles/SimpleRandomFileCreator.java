@@ -1,9 +1,9 @@
-package model.CreateTestingFiles;
+package model.createTestingFiles;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 /**
  * User: Main
@@ -14,35 +14,40 @@ public class SimpleRandomFileCreator implements SimpleFileFactory {
     private boolean state;
     private String finalMessage;
     private String endOfFile = ".txt";
-    private static int i = 0;
 
-    public SimpleRandomFileCreator(){
+    public SimpleRandomFileCreator() {
         state = false;
         finalMessage = "The file didn`t create now";
     }
 
     @Override
     public boolean getState() {
-
         return state;
     }
 
     @Override
     public Path createFile(Path path) {
-        Path tempNewPath = path;
-        if(Files.exists(path)){
-             try {
-              tempNewPath  =  Files.createFile(path.resolve((int)(Math.random() * hashCode())  + endOfFile));
-                 state = true;
-                 finalMessage = "Creating new file " + tempNewPath;
-             } catch (IOException e) {
-                 finalMessage = e.toString();
-             }
-         } else {
-            finalMessage = "Root directory is wrong";
-            state = false;
+        state = false;
+        if (path == null) {
+            finalMessage = "The path is null. File can`t be create";
+            return  path;
         }
-        return tempNewPath;
+
+        Path tmpPath = path;
+
+        if (Files.exists(tmpPath)) {
+            try {
+                tmpPath = Files.createFile(path.resolve((int) (Math.random() * hashCode()) + endOfFile));
+                state = true;
+                finalMessage = "Creating new file " + tmpPath;
+            } catch (IOException e) {
+                finalMessage = e.toString();
+            }
+        } else {
+            finalMessage = "The path isn`t exist. Trying parent directory of path";
+            createFile(path.getParent());
+        }
+        return tmpPath.getParent();
     }
 
     @Override
