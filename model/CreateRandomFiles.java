@@ -22,7 +22,7 @@ public class CreateRandomFiles {
     private Set<Path> pathList = new HashSet<Path>();
     private List<SimpleFileFactory> fileCreatorsList = new ArrayList<SimpleFileFactory>();
 
-    private int amountOfFiles = 50;
+    private int amountOfFiles = 100;
 
 
     public CreateRandomFiles(File directory) {
