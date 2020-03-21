@@ -22,6 +22,7 @@ public class CreateRandomFiles {
     private Set<Path> pathList = new HashSet<Path>();
     private List<SimpleFileFactory> fileCreatorsList = new ArrayList<SimpleFileFactory>();
 
+
     private int amountOfFiles = 100;
 
 
@@ -29,7 +30,7 @@ public class CreateRandomFiles {
         this.directory = directory;
         pathForCreate = Paths.get(directory.getAbsolutePath());
         pathList.add(pathForCreate);
-        // pathList.add(null);
+
 
     }
 
