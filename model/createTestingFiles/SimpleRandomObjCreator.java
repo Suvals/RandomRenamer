@@ -3,19 +3,18 @@ package model.createTestingFiles;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 /**
- * User: Main
- * Date: 10.07.2018
+ * @author  Khyzhniak Slava (Slavus@i.ua)
+ * @version 1
  */
-public class SimpleRandomFileCreator implements SimpleFileFactory {
+public class SimpleRandomObjCreator implements SimpleObjFactory {
 
     private boolean state;
     private String finalMessage;
     private String endOfFile = ".txt";
 
-    public SimpleRandomFileCreator() {
+    public SimpleRandomObjCreator() {
         state = false;
         finalMessage = "The file didn`t create now";
     }

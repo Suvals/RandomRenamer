@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 /**
- * @author  Hizhnyak Slava (Slavus@i.ua)
+ * @author  Khyzhniak Slava (Slavus@i.ua)
  * @version 1
  * Date: 15.03.2018
  *

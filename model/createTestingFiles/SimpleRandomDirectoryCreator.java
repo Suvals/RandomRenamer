@@ -5,10 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * User: Main
- * Date: 11.07.2018
+ * @author  Khyzhniak Slava (Slavus@i.ua)
+ * @version 1
  */
-public class SimpleRandomDirectoryCreator implements SimpleFileFactory {
+public class SimpleRandomDirectoryCreator implements SimpleObjFactory {
 
     private boolean state;
     private String finalMessage;
@@ -22,7 +22,6 @@ public class SimpleRandomDirectoryCreator implements SimpleFileFactory {
     public boolean getState() {
         return state;
     }
-
     @Override
     public Path createFile(Path path) {
 
