@@ -1,7 +1,6 @@
 package view;
 
-import model.CreateRandomFiles;
-
+import model.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,11 +8,12 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 /**
- * @author  Khyzhniak Slava (Slavus@i.ua)
+ * @author  Hizhnyak Slava (Slavus@i.ua)
  * @version 1
  * Date: 15.03.2018
  *
  */
+
 public class MainFrame extends JFrame {
 
     public static final String NAME_PROGRAM = "\"Random Renamer ";
@@ -84,6 +84,6 @@ public class MainFrame extends JFrame {
     }
 
     private void alert(String message){
-         JOptionPane.showMessageDialog(this, message);
+        JOptionPane.showMessageDialog(this, message);
     }
 }
