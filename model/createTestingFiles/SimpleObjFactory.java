@@ -13,6 +13,7 @@ public interface SimpleObjFactory {
 
 
     /**
+     * Main interface, for creators(files/folders/disks etc.)
       * @return  {@code true}  if file/directory success created
      */
    boolean getState();
