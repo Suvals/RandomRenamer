@@ -3,13 +3,13 @@ package model.createTestingFiles;
 import java.nio.file.Path;
 
 /**
- * User: Main
- * Date: 10.07.2018
+ * @author  Khyzhniak Slava (Slavus@i.ua)
+ * @version 1
  *
  * Main interface of any objects, that can create file/directory using some rules.
  *
  */
-public interface SimpleFileFactory {
+public interface SimpleObjFactory {
 
 
     /**

@@ -7,8 +7,8 @@ import java.awt.*;
 import java.io.File;
 
 /**
- * User: Main
- * Date: 24.08.2017
+ * @author  Khyzhniak Slava (Slavus@i.ua)
+ * @version 1
  */
 public class RandomRenamer {
 
