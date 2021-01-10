@@ -1,3 +1,6 @@
 public class Test {
-    ghkfvbkfvkvghdfjhdfhfsdh
+    void mmas(){
+
+    }
+
 }
