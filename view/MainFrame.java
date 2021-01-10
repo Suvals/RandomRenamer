@@ -17,7 +17,7 @@ import java.io.File;
 public class MainFrame extends JFrame {
 
     public static final String NAME_PROGRAM = "\"Random Renamer ";
-    public static final String VERSION = "v.1\"   ";
+    public static final String VERSION = "v.2\"   ";
 
     private static int default_width;
     private static int default_height;
