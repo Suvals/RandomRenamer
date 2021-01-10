@@ -3,6 +3,7 @@ package model.createTestingFiles;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Random;
 
 /**
  * @author  Khyzhniak Slava (Slavus@i.ua)
@@ -34,7 +35,7 @@ public class SimpleRandomDirectoryCreator implements SimpleObjFactory {
         if(Files.exists(tmpPath)){
             try {
                // tmpPath = Files.createDirectory(tmpPath.resolve(String.valueOf(Math.random() * hashCode())));
-                 tmpPath = Files.createDirectory(tmpPath.resolve("1"));
+                 tmpPath = Files.createDirectory(tmpPath.resolve(String.valueOf(new Random().nextInt(10))));
                 state = true;
                 finalMessage = "Creating new directory " + tmpPath;
             } catch (IOException e) {
